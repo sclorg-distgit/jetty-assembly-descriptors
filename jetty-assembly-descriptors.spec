@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.0
-Release:        9.9%{?dist}
+Release:        9.10%{?dist}
 Summary:        Jetty assembly descriptors used for building
 
 License:        ASL 2.0 or EPL
@@ -17,16 +17,16 @@ Source2:        http://www.eclipse.org/legal/epl-v10.html
 
 BuildRequires:  %{?scl_prefix_java_common}javapackages-tools
 BuildRequires:  %{?scl_prefix_java_common}maven-local
-BuildRequires:  maven30-jetty-toolchain
-BuildRequires:  maven30-maven-surefire-provider-junit
-BuildRequires:  maven30-maven-resources-plugin
+BuildRequires:  %{?scl_prefix}jetty-toolchain
+BuildRequires:  %{?scl_prefix}maven-surefire-provider-junit
+BuildRequires:  %{?scl_prefix}maven-resources-plugin
 
 %description
 Jetty assembly descriptors used for building
 
 %prep
 %setup -q -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 cp -p %{SOURCE1} %{SOURCE2} .
 
@@ -34,13 +34,13 @@ cp -p %{SOURCE1} %{SOURCE2} .
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_build
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -49,6 +49,9 @@ set -e -x
 %doc LICENSE-2.0.txt epl-v10.html
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.0-9.10
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.0-9.9
 - maven33 rebuild
 
