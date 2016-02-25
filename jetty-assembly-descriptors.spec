@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.0
-Release:        9.10%{?dist}
+Release:        9.11%{?dist}
 Summary:        Jetty assembly descriptors used for building
 
 License:        ASL 2.0 or EPL
@@ -16,7 +16,7 @@ Source1:        http://www.apache.org/licenses/LICENSE-2.0.txt
 Source2:        http://www.eclipse.org/legal/epl-v10.html
 
 BuildRequires:  %{?scl_prefix_java_common}javapackages-tools
-BuildRequires:  %{?scl_prefix_java_common}maven-local
+BuildRequires:  %{?scl_prefix}maven-local
 BuildRequires:  %{?scl_prefix}jetty-toolchain
 BuildRequires:  %{?scl_prefix}maven-surefire-provider-junit
 BuildRequires:  %{?scl_prefix}maven-resources-plugin
@@ -49,6 +49,9 @@ set -e -x
 %doc LICENSE-2.0.txt epl-v10.html
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.0-9.11
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.0-9.10
 - maven33 rebuild #2
 
